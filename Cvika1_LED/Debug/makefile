@@ -60,8 +60,8 @@ all: main-build
 main-build: Cvika1_LED.elf secondary-outputs
 
 # Tool invocations
-Cvika1_LED.elf Cvika1_LED.map: $(OBJS) $(USER_OBJS) C:\Users\grafd\OneDrive\Plocha\Škola\4.\ ročník\Zima\MPC-MKS\MKS\Cvika1_LED\STM32F030R8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Cvika1_LED.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"C:\Users\grafd\OneDrive\Plocha\Škola\4. ročník\Zima\MPC-MKS\MKS\Cvika1_LED\STM32F030R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Cvika1_LED.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Cvika1_LED.elf Cvika1_LED.map: $(OBJS) $(USER_OBJS) C:\Users\grafd\OneDrive\Plocha\Škola\4.\ ročník\Zima\MKS\Cvika1_LED\STM32F030R8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Cvika1_LED.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"C:\Users\grafd\OneDrive\Plocha\Škola\4. ročník\Zima\MKS\Cvika1_LED\STM32F030R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Cvika1_LED.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

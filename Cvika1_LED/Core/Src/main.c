@@ -99,8 +99,9 @@ int main(void)
   while (1)
   {
 	  uint32_t sequence = 0b10101001110111011100101010000000;
+	  uint8_t array[32] = {1,0,1,0,1,0,0,1,1,1,0,1,1,1,0,1,1,1,0,0,1,0,1,0,1,0,0,0,0,0,0,0};
 
-	  for (int i= 0; i < 32; i++)
+	  for (int i= 0; i < 31; i++)
 	  {
 		  if (sequence &(1uL << 31))
 		  {
@@ -113,8 +114,22 @@ int main(void)
 		  }
 		  LL_mDelay(200);
 		  sequence = sequence <<1;
+	  }
+
+	  for (int i = 0; i < 31; i ++)
+	  {
+		  if (array[i] == 1)
+		  {
+			  LL_GPIO_SetOutputPin(LD2_GPIO_Port, LD2_Pin);
+		  }
+		  else
+		  {
+			  LL_GPIO_ResetOutputPin(LD2_GPIO_Port, LD2_Pin);
+		  }
+		  LL_mDelay(200);
 
 	  }
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
