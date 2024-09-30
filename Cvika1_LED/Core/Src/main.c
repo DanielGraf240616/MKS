@@ -116,6 +116,7 @@ int main(void)
 		  sequence = sequence <<1;
 	  }
 
+	  //2nd approach
 	  for (int i = 0; i < 31; i ++)
 	  {
 		  if (array[i] == 1)
@@ -127,7 +128,6 @@ int main(void)
 			  LL_GPIO_ResetOutputPin(LD2_GPIO_Port, LD2_Pin);
 		  }
 		  LL_mDelay(200);
-
 	  }
 
     /* USER CODE END WHILE */
