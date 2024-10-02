@@ -34,6 +34,7 @@
 #define LED_TIME_BLINK 300
 #define LED_TIME_SHORT 100
 #define LED_TIME_LONG  1000
+#define DEBOUNCE_TIME 5
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -102,6 +103,34 @@ void button(void)
 
 }
 
+
+
+
+void debounceButton(void)
+{
+	static uint16_t debounce = 0x0000;
+	uint32_t currentTime = Tick;
+	static uint32_t lastUpdate = 0;
+
+	if ((currentTime - lastUpdate) >= DEBOUNCE_TIME)
+	{
+		debounce  = debounce << 1;
+
+		if(!LL_GPIO_IsInputPinSet(S1_GPIO_Port, S1_Pin))
+		{
+			debounce |= 0x0001;
+		}
+		lastUpdate = currentTime;
+
+		if(debounce == 0x7FFF)
+		{
+			LL_GPIO_TogglePin(LED2_GPIO_Port, LED2_Pin);
+		}
+
+	}
+
+}
+
 /* USER CODE END 0 */
 
 /**
@@ -144,12 +173,12 @@ int main(void)
   while (1)
   {
 	  blink();
-	  button();
+	  //button();
+	  debounceButton();
 
+	  /* USER CODE END WHILE */
 
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
+	  /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
