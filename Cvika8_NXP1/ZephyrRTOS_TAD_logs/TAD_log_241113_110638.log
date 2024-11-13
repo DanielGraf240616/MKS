@@ -1,0 +1,6 @@
+"Task Aware Debugger for GDB" version 11.10.0 (202404041456)
+Copyright 2016-2023 NXP
+==================================
+11:06:13.657 INFO: [ZephyrRTOS] .config file could not be read [C:\Users\240616\Desktop\MKS\MKS\Cvika8_NXP1\lpcxpresso55s69_ctimer_hello_world\Debug\.config (The system cannot find the file specified)]
+11:06:13.659 INFO: [TadModel] DSF session ID 0 has started.
+11:06:38.540 INFO: [TadModel] DSF session ID 0 has ended.
