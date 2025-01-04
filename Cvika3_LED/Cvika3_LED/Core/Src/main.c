@@ -71,8 +71,8 @@ int main(void)
 {
 
 	/* USER CODE BEGIN 1 */
-	uint32_t x = 0;
-	uint8_t position = 0;
+	uint32_t x = 0; //Display number (000-999)
+	uint8_t position = 0; //Rotary encoder
 	/* USER CODE END 1 */
 
 	/* MCU Configuration--------------------------------------------------------*/
@@ -97,10 +97,10 @@ int main(void)
 	MX_TIM1_Init();
 	/* USER CODE BEGIN 2 */
 
-	HAL_TIM_Encoder_Start(&htim1,htim1.Channel);
+	HAL_TIM_Encoder_Start(&htim1,htim1.Channel); //START ENCODER
 
-	/* sct_init();
-  sct_led(0x7A5C36DE);
+	/* sct_init();	//Initialization in sct.c file
+  sct_led(0x7A5C36DE); //"bYE" message for testing
   HAL_Delay(1000);
 	 */
 
@@ -124,7 +124,7 @@ int main(void)
 		 */
 
 		position = __HAL_TIM_GET_COUNTER(&htim1);
-		sct_value(position);
+		sct_value(position); //Display rotary encoder position
 
 
 		/* USER CODE END WHILE */

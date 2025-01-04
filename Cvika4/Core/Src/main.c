@@ -82,7 +82,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) //ADC callback
 	switch (channel)
 	{
 	case 0:  //Trimmer
-		raw_pot = avg_pot >> ADC_Q;
+		raw_pot = avg_pot >> ADC_Q; //Slower "accumulative" refresh (??)
 		avg_pot -= raw_pot;
 		avg_pot += HAL_ADC_GetValue(hadc);
 
@@ -100,7 +100,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) //ADC callback
 		break;
 	}
 
-	if (__HAL_ADC_GET_FLAG(hadc, ADC_FLAG_EOS)) channel = 0;
+	if (__HAL_ADC_GET_FLAG(hadc, ADC_FLAG_EOS)) channel = 0; //Conversion complete (??)
 	else channel++;
 }
 
@@ -127,7 +127,7 @@ int main(void)
 	HAL_Init();
 
 	/* USER CODE BEGIN Init */
-	sct_init();
+	sct_init(); //Init LED driver
 
 	/* USER CODE END Init */
 
@@ -188,7 +188,7 @@ int main(void)
 
 		else if(button_pressed)
 		{
-			if (HAL_GetTick() - button_time >= 1000)
+			if (HAL_GetTick() - button_time >= 1000) //Reset after 1s
 			{
 				button_pressed = 0;
 				sct_value((raw_pot * 501) / 4096, BAR);
@@ -200,8 +200,6 @@ int main(void)
 			sct_value((raw_pot * 501) / 4096, BAR);
 			HAL_Delay(50);
 		}
-
-
 
 
 		/* USER CODE END WHILE */
